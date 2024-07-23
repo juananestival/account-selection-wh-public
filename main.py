@@ -4,16 +4,37 @@ import logging
 from flask_cors import CORS
 import os
 import json
+import requests
+
 
 
 app = Flask(__name__)
 CORS(app)
 app = Flask(__name__)
+base_url = os.environ.get('ACCOUNTS_URL')
 
 @app.post("/samplewh")
 def sample_wh():
   data = request.get_json()
   print(f"data {data}")
+  tag = data['fulfillmentInfo']['tag']
+  if tag == "get-accounts":
+    url = base_url + "/getAccounts?type=3"
+    print(url)
+    response = requests.get(url)
+    getAccountsResponse = response.json()
+    accounts = getAccountsResponse['accounts']
+
+    options_array = []
+    for account in accounts:
+      print('0')
+      options_array.append({"text": account['number']})
+      print(account['number'])
+
+
+
+
+
   output = {
     'sessionInfo': {
       'parameters': {
@@ -33,11 +54,7 @@ def sample_wh():
                         [
                             {
                                 "type": "chips",
-                                "options": [
-                                    { "text": "Option 1" },
-                                    { "text": "Option 2" },
-                                    { "text": "Option 3" }
-                                ]
+                                "options": options_array
                             }
                         ]
                     ]

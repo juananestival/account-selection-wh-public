@@ -13,7 +13,7 @@
       "session":"projects/emea-ccai-demo/locations/global/agents/05e634ec-c016-4f2c-829d-dec352a38a5c/sessions/c12139-d9a-513-d31-92f6476e0"
    },
    "fulfillmentInfo":{
-      "tag":"not-used"
+      "tag":"get-accounts"
    },
    "text":"i want to test a webhook",
    "languageCode":"en",
