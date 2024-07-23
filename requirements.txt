@@ -1,0 +1,5 @@
+flask
+flask_cors
+debugpy # Required for debugging.
+ptvsd
+gunicorn
